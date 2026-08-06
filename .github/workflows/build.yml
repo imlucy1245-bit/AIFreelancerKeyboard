@@ -18,9 +18,8 @@ jobs:
         distribution: 'temurin'
         java-version: '17'
 
-    - name: Fix settings.gradle and Build
+    - name: Fix settings.gradle automatically
       run: |
-        cd AIFreelancerKeyboard
         cat << 'EOF' > settings.gradle
         pluginManagement {
             repositories {
@@ -46,11 +45,11 @@ jobs:
         gradle-version: '8.7'
 
     - name: Build with Gradle
-      run: cd AIFreelancerKeyboard && gradle assembleDebug
+      run: gradle assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: debug-apk
-        path: AIFreelancerKeyboard/app/build/outputs/apk/debug/app-debug.apk
+        path: app/build/outputs/apk/debug/app-debug.apk
         
